@@ -27,3 +27,8 @@ resource "aws_instance" "ubuntu" {
     "Linux Distribution" = "Ubuntu"
   }
 }
+
+resource "aws_s3_bucket" "asset_bucket" {
+   bucket = "squares-static-asset-bucket"
+   acl = "private"
+}
