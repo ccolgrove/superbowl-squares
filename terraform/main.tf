@@ -42,6 +42,8 @@ resource "aws_s3_bucket" "log_bucket" {
   tags = {
     Name = "Log bucket"
   }
+
+  acl = "log-delivery-write"
 }
 resource "aws_s3_bucket_object" "log_folder" {
   bucket       = "${aws_s3_bucket.log_bucket.id}"
