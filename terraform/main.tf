@@ -40,11 +40,11 @@ resource "aws_s3_bucket" "asset_bucket" {
 resource "aws_s3_bucket" "log_bucket" {
    bucket = "superbowlsquares_logs"
   tags = {
-    Name = "Logs bucket"
+    Name = "Log bucket"
   }
 }
 resource "aws_s3_bucket_object" "log_folder" {
-  bucket       = "${aws_s3_bucket.logs_bucket.id}"
+  bucket       = "${aws_s3_bucket.log_bucket.id}"
   key          = "log/"
   content_type = "application/x-directory"
 }
