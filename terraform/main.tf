@@ -31,4 +31,8 @@ resource "aws_instance" "ubuntu" {
 resource "aws_s3_bucket" "asset_bucket" {
    bucket = "squares-static-asset-bucket"
    acl = "private"
+
+  versioning {
+    enabled = true
+  }
 }
