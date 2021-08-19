@@ -37,6 +37,18 @@ resource "aws_s3_bucket" "asset_bucket" {
   }
 }
 
+resource "aws_s3_bucket" "log_bucket" {
+   bucket = "superbowlsquares_logs"
+  tags = {
+    Name = "Log bucket"
+  }
+}
+resource "aws_s3_bucket_object" "log_folder" {
+  bucket       = "${aws_s3_bucket.log_bucket.id}"
+  key          = "log/"
+  content_type = "application/x-directory"
+}
+
 resource "aws_s3_bucket" "domain_bucket" {
    bucket = "superbowlsquaresapp.com"
 
@@ -51,6 +63,11 @@ resource "aws_s3_bucket" "domain_bucket" {
   versioning {
     enabled = true
   }
+
+  logging {
+    target_bucket = aws_s3_bucket.log_bucket.id
+    target_prefix = "log/"
+  }
 }
 
 resource "aws_s3_bucket" "subdomain_bucket" {
@@ -62,8 +79,5 @@ resource "aws_s3_bucket" "subdomain_bucket" {
 
   tags = {
     Name = "Redirect bucket"
-  }
-  versioning {
-    enabled = true
   }
 }
