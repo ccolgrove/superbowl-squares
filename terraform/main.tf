@@ -63,7 +63,17 @@ resource "aws_s3_bucket" "subdomain_bucket" {
   tags = {
     Name = "Redirect bucket"
   }
-  versioning {
-    enabled = true
+}
+
+resource "aws_s3_bucket" "logs_bucket" {
+   bucket = "superbowlsquares_logs"
+  tags = {
+    Name = "Logs bucket"
   }
+}
+
+resource "aws_s3_bucket_object" "logs_folder" {
+  bucket       = "${aws_s3_bucket.domain_bucket.id}"
+  key          = "logs/"
+  content_type = "application/x-directory"
 }
