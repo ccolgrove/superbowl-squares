@@ -56,7 +56,7 @@ resource "aws_s3_bucket" "domain_bucket" {
 resource "aws_s3_bucket" "subdomain_bucket" {
    bucket = "www.superbowlsquaresapp.com"
 
-    website {
+  website {
     redirect_all_requests_to = "http://superbowlsquaresapp.com"
   }
 
