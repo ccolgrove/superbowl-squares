@@ -38,7 +38,7 @@ resource "aws_s3_bucket" "asset_bucket" {
 }
 
 resource "aws_s3_bucket" "log_bucket" {
-   bucket = "superbowlsquares_logs"
+   bucket = "superbowlsquares-logs"
   tags = {
     Name = "Log bucket"
   }
