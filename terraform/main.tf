@@ -36,3 +36,30 @@ resource "aws_s3_bucket" "asset_bucket" {
     enabled = true
   }
 }
+
+resource "aws_s3_bucket" "domain_bucket" {
+   bucket = "superbowlsquaresapp.com"
+
+  website {
+    index_document = "index.html"
+    error_document = "error.html"
+  }
+
+  tags = {
+    Name = "Web hosting bucket"
+  }
+  versioning {
+    enabled = true
+  }
+}
+
+resource "aws_s3_bucket" "subdomain_bucket" {
+   bucket = "www.superbowlsquaresapp.com"
+
+  tags = {
+    Name = "Redirect bucket"
+  }
+  versioning {
+    enabled = true
+  }
+}
