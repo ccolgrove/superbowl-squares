@@ -52,7 +52,7 @@ resource "aws_s3_bucket_object" "log_folder" {
 }
 
 resource "aws_s3_bucket" "domain_bucket" {
-   bucket = "superbowlsquaresapp.com"
+  bucket = "superbowlsquaresapp.com"
 
   website {
     index_document = "index.html"
@@ -82,4 +82,26 @@ resource "aws_s3_bucket" "subdomain_bucket" {
   tags = {
     Name = "Redirect bucket"
   }
+}
+
+resource "aws_s3_bucket_policy" "domain_bucket" {
+  bucket = aws_s3_bucket.domain_bucket.id
+
+  # Terraform's "jsonencode" function converts a
+  # Terraform expression's result to valid JSON syntax.
+  policy = jsonencode({
+    Version = "2012-10-17"
+    Id      = "PUBLIC_GET_OBJECT"
+    Statement = [
+      {
+        Sid       = "PublicReadGetObject"
+        Effect    = "Allow"
+        Principal = "*"
+        Action    = ["s3:GetObject"]
+        Resource = [
+          aws_s3_bucket.domain_bucket.arn,
+        ]
+      },
+    ]
+  })
 }
