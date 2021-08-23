@@ -26,6 +26,7 @@ const RowHeader = styled.div`
   display: flex;
   align-items: center;
   padding-right: 10px;
+  width: 20px;
 `;  
 
 const ColumnHeader = styled.div`
