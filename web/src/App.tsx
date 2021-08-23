@@ -21,6 +21,11 @@ const RowDiv = styled.div`
   display: flex;
 `;
 
+const RowHeaderDiv = styled.div`
+  display: flex;
+  margin-left: 31px; /* TODO: fix */
+`;
+
 const RowHeader = styled.div`
   height: 60px;
   display: flex;
@@ -30,7 +35,7 @@ const RowHeader = styled.div`
 `;  
 
 const ColumnHeader = styled.div`
-  width: 60px;
+  width: 63px;
   display: flex;
   justify-content: center;
   padding-bottom: 10px;
@@ -40,9 +45,9 @@ function App() {
   return (
     <AppDiv>
       <Title>Superbowl Squares</Title>
-      <RowDiv>
+      <RowHeaderDiv>
         {createArray(10).map((_el, idx) => <ColumnHeader>{idx}</ColumnHeader>)} 
-      </RowDiv>
+      </RowHeaderDiv>
       {createArray(10).map((_el, idx) => (
         <RowDiv>
           {<RowHeader>{idx}</RowHeader>}
