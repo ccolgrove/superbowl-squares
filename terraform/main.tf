@@ -105,14 +105,3 @@ resource "aws_s3_bucket_policy" "domain_bucket" {
     ]
   })
 }
-
-resource "aws_route53_record" "domain" {
-   name = "superbowlsquaresapp.com"
-   zone_id = "Z0474263JQFYK6LMLT6B"
-   type = "A"
-   alias {
-     name = "s3-website-us-west-1.amazonaws.com"
-     zone_id = "Z0474263JQFYK6LMLT6B"
-     evaluate_target_health = false
-   }
-}
