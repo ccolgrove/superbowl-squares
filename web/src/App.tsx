@@ -3,6 +3,8 @@ import styled from "styled-components";
 
 import { Square } from "./components/Square"
 
+import { Grid } from './components/Grid';
+
 function createArray(length: number): unknown[] {
   return [...new Array(length)]
 }
@@ -45,7 +47,8 @@ function App() {
   return (
     <AppDiv>
       <Title>Superbowl Squares</Title>
-      <RowHeaderDiv>
+      <Grid rows={10} columns={10} />
+      {/* <RowHeaderDiv>
         {createArray(10).map((_el, idx) => <ColumnHeader>{idx}</ColumnHeader>)} 
       </RowHeaderDiv>
       {createArray(10).map((_el, idx) => (
@@ -53,7 +56,7 @@ function App() {
           {<RowHeader>{idx}</RowHeader>}
           {createArray(10).map((_el, idx) => <Square />)}
         </RowDiv>
-      ))}
+      ))} */}
       
     </AppDiv>
   );
