@@ -41,9 +41,8 @@ export const Grid: React.ComponentType<GridProps> = React.memo(function Grid({ r
                 key={idxCol} 
                 row={idxRow} 
                 column={idxCol} 
-                top={idxRow === 0} 
-                bottom={idxRow === rows - 1} 
-                left={idxCol === 0}
+                totalColumns={columns} 
+                totalRows={rows}
               />
             ))}
           </SquareGroup>
@@ -54,9 +53,8 @@ export const Grid: React.ComponentType<GridProps> = React.memo(function Grid({ r
                 key={idxCol + halfCols }
                 row={idxRow} 
                 column={idxCol + halfCols} 
-                top={idxRow === 0} 
-                bottom={idxRow === rows - 1} 
-                right={idxCol + halfCols === columns - 1}
+                totalColumns={columns} 
+                totalRows={rows}
               />
             ))}
           </SquareGroup>        
