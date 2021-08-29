@@ -1,11 +1,8 @@
 import React from 'react';
+import Container from "react-bootstrap/Container"
 import styled from "styled-components";
 
-import { Square } from "./components/Square"
-
-function createArray(length: number): unknown[] {
-  return [...new Array(length)]
-}
+import { Grid } from './components/Grid';
 
 const AppDiv = styled.div`
   display: flex;
@@ -13,48 +10,26 @@ const AppDiv = styled.div`
   flex-direction: column;
 `;
 
-const Title = styled.h2`
+const Title = styled.h1`
   display: flex;
+  margin-bottom: 0;
 `;  
 
-const RowDiv = styled.div`
-  display: flex;
-`;
-
-const RowHeaderDiv = styled.div`
-  display: flex;
-  margin-left: 31px; /* TODO: fix */
-`;
-
-const RowHeader = styled.div`
-  height: 60px;
-  display: flex;
-  align-items: center;
-  padding-right: 10px;
-  width: 20px;
-`;  
-
-const ColumnHeader = styled.div`
-  width: 63px;
+const HeaderContainer = styled(Container)`
+  margin-bottom: 20px;
+  min-height: 80px;
   display: flex;
   justify-content: center;
-  padding-bottom: 10px;
+  align-items: center;
 `;
 
 function App() {
   return (
     <AppDiv>
-      <Title>Superbowl Squares</Title>
-      <RowHeaderDiv>
-        {createArray(10).map((_el, idx) => <ColumnHeader>{idx}</ColumnHeader>)} 
-      </RowHeaderDiv>
-      {createArray(10).map((_el, idx) => (
-        <RowDiv>
-          {<RowHeader>{idx}</RowHeader>}
-          {createArray(10).map((_el, idx) => <Square />)}
-        </RowDiv>
-      ))}
-      
+      <HeaderContainer className="bg-danger" fluid={true}>
+        <Title className="text-light">Superbowl Squares</Title>
+      </HeaderContainer>
+      <Grid rows={10} columns={10} />
     </AppDiv>
   );
 }
