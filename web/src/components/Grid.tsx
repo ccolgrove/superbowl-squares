@@ -8,10 +8,6 @@ import { createArray } from "../helpers/arrays";
 
 import { Square } from "./Square";
 
-const FixedCol = styled(Col)`
-  max-width: 60px;
-`;
-
 const SquareGroup = styled.div`
   display: flex;
 `;
@@ -28,25 +24,44 @@ const StyledColLeft = styled(StyledCol)`
     justify-content: flex-end;
   }
 `;
-
 export interface GridProps {
   rows: number;
   columns: number;
 }
 
 export const Grid: React.ComponentType<GridProps> = React.memo(function Grid({ rows, columns }) {
+  const halfCols = columns / 2;
+  
   return <Container>
-
     {createArray(rows).map((_el, idxRow) => (
-      <Row noGutters={true}>
-        <StyledColLeft style={{border: "1px solid blue"}}>
-          <SquareGroup>{createArray(5).map((_el, idxCol) => <Square>{idxRow}{idxCol}</Square>)}</SquareGroup>
+      <Row className="gx-0" key={idxRow}>
+        <StyledColLeft>
+          <SquareGroup>{createArray(halfCols).map((_el, idxCol) => (
+              <Square 
+                key={idxCol} 
+                row={idxRow} 
+                column={idxCol} 
+                top={idxRow === 0} 
+                bottom={idxRow === rows - 1} 
+                left={idxCol === 0}
+              />
+            ))}
+          </SquareGroup>
         </StyledColLeft>
-        <StyledCol style={{border: "1px solid red"}}>
-          <SquareGroup>{createArray(5).map((_el, idxCol) => <Square>{idxRow}{idxCol+5}</Square>)}</SquareGroup>
+        <StyledCol>
+          <SquareGroup>{createArray(halfCols).map((_el, idxCol) => (
+              <Square 
+                key={idxCol + halfCols }
+                row={idxRow} 
+                column={idxCol + halfCols} 
+                top={idxRow === 0} 
+                bottom={idxRow === rows - 1} 
+                right={idxCol + halfCols === columns - 1}
+              />
+            ))}
+          </SquareGroup>        
         </StyledCol>
       </Row>
     ))}
-
   </Container>;
 })
